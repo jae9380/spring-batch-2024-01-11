@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
@@ -18,6 +19,7 @@ public class HelloJobConfig {
     @Bean
     public Job helloJob(JobRepository jobRepository, Step simpleStep1) {
         return new JobBuilder("helloJob", jobRepository)
+                .incrementer(new RunIdIncrementer())
                 .start(simpleStep1)
                 .build();
     }
