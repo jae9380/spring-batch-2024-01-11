@@ -1,4 +1,4 @@
-package com.ll.sbb20240111.test;
+package com.ll.sbb20240111.batch;
 
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;

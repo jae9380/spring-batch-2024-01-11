@@ -1,4 +1,4 @@
-package com.ll.sbb20240111.test;
+package com.ll.sbb20240111.batch;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -14,21 +14,23 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Slf4j
 @Configuration
-
-public class SimpleJobConfiguration {
+public class HelloJobConfig {
     @Bean
-    public Job simpleJob1(JobRepository jobRepository, Step simpleStep1) {
-        return new JobBuilder("simpleJob", jobRepository)
+    public Job helloJob(JobRepository jobRepository, Step simpleStep1) {
+        return new JobBuilder("helloJob", jobRepository)
                 .start(simpleStep1)
                 .build();
     }
+
     @Bean
-    public Step simpleStep1(JobRepository jobRepository, Tasklet testTasklet, PlatformTransactionManager platformTransactionManager){
-        return new StepBuilder("simpleStep1", jobRepository)
-                .tasklet(testTasklet, platformTransactionManager).build();
+    public Step helloStep1(JobRepository jobRepository, Tasklet helloStep1Tasklet1, PlatformTransactionManager platformTransactionManager) {
+        return new StepBuilder("helloStep1Tasklet1", jobRepository)
+                .tasklet(helloStep1Tasklet1, platformTransactionManager)
+                .build();
     }
+
     @Bean
-    public Tasklet testTasklet(){
+    public Tasklet helloStep1Tasklet1() {
         return ((contribution, chunkContext) -> {
             log.info("Hello World");
             System.out.println("Hello World");
