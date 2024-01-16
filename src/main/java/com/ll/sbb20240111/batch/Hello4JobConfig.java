@@ -31,6 +31,14 @@ public class Hello4JobConfig {
     }
 
     @JobScope
+    @Component
+    public static class Hello4Step1Tasklet {
+        public void run() {
+            System.out.println("Hello4Step1Tasklet.run");
+        }
+    }
+
+    @JobScope
     @Bean
     public Step hello4Step1(
             JobRepository jobRepository,
