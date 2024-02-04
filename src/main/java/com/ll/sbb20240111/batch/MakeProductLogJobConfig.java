@@ -96,7 +96,10 @@ public class MakeProductLogJobConfig {
             if (item.getProduct().getId()==100){
                 throw new RuntimeException("100번은 실패");
             }
-            productLogRepository.save(item);
+            if (!productLogRepository.existsByProduct(item.getProduct())) {
+                // 조건을 넣어서 추가적으로 성공했던 부분은 넘어간다
+                productLogRepository.save(item);
+            }
         });
     }
 }
